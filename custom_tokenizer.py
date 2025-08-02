@@ -33,13 +33,19 @@ class CustomBPETokenizer:
         return tokenizer_instance
 
     def get_vocab_size(self):
-        return len(self.tokenizer.get_vocab())
+        return self.tokenizer.get_vocab_size()
     
-    def pad_token_id(self, id):
-        return self.tokenizer.token_to_id("[PAD]") if "[PAD]" in self.tokenizer.get_vocab() else id
+    def pad_token_id(self):
+        return self.tokenizer.token_to_id("[PAD]") 
     
-    def unk_token_id(self, id):
-        return self.tokenizer.token_to_id("[UNK]") if "[UNK]" in self.tokenizer.get_vocab() else id
+    def sos_token_id(self):
+        return self.tokenizer.token_to_id("[SOS]")
+    
+    def eos_token_id(self):
+        return self.tokenizer.token_to_id("[EOS]")
+    
+    def unk_token_id(self):
+        return self.tokenizer.token_to_id("[UNK]")
     
     def token_to_ids(self, tokens):
         for token in tokens:
