@@ -1,3 +1,9 @@
 
 dataset
 /.dataset
+./pycache
+__pycache__
+*.pyc
+dummy_corpus.txt
+tokenizer/test/temp
+tokenizer/test/test_tokenizer.json

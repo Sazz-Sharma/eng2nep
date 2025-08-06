@@ -1,14 +1,17 @@
 from tokenizers import Tokenizer
-from tokenizers.pre_tokenizers import Whitespace
-from tokenizers.model import BPE
+from tokenizers.pre_tokenizers import Whitespace, Metaspace
+from tokenizers.decoders import Metaspace as MetaspaceDecoder
+from tokenizers.models import BPE
 from tokenizers.trainers import BpeTrainer
 from pathlib import Path
 
 class CustomBPETokenizer:
     def __init__(self, vocab_size=40000):
         self.tokenizer = Tokenizer(BPE(unk_token="[UNK]"))
-        self.tokenizer.pre_tokenizer = Whitespace()
+        # self.tokenizer.pre_tokenizer = Whitespace()
+        self.tokenizer.pre_tokenizer = Metaspace(replacement = " ")
         self.trainer = BpeTrainer(vocab_size=vocab_size, special_tokens=["[UNK]", "[PAD]", "[SOS]", "[EOS]"])
+        self.tokenizer.decoder = MetaspaceDecoder(replacement=" ")
 
     def train(self, files):
         self.tokenizer.train(files, trainer=self.trainer)
@@ -35,16 +38,16 @@ class CustomBPETokenizer:
     def get_vocab_size(self):
         return self.tokenizer.get_vocab_size()
     
-    def pad_token_id(self):
+    def get_pad_token_id(self):
         return self.tokenizer.token_to_id("[PAD]") 
     
-    def sos_token_id(self):
+    def get_sos_token_id(self):
         return self.tokenizer.token_to_id("[SOS]")
     
-    def eos_token_id(self):
+    def get_eos_token_id(self):
         return self.tokenizer.token_to_id("[EOS]")
     
-    def unk_token_id(self):
+    def get_unk_token_id(self):
         return self.tokenizer.token_to_id("[UNK]")
     
     def token_to_ids(self, tokens):
