@@ -10,7 +10,7 @@ from custom_tokenizer import CustomBPETokenizer
 
 # 1. Load the tokenizer you just trained and saved
 print("--- Loading tokenizer ---")
-tokenizer_path = 'temp/test_tokenizer.json'
+tokenizer_path = 'trainedBPE/tokenizer.json'
 tokenizer = CustomBPETokenizer.load(tokenizer_path)
 print("Tokenizer loaded successfully.\n")
 
