@@ -35,7 +35,7 @@ Notes:
 
 ## Setup
 
-1) Create a Python environment (Python 3.10–3.11 recommended).
+1) Create a Python environment (Python 3.12.3 recommended and used while developing).
 2) Install dependencies (adjust to your setup):
 
 ```
