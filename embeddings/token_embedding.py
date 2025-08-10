@@ -6,7 +6,7 @@ class TokenEmbedding(nn.Module):
     def __init__(self, vocab_size:int, embedding_dim:int, scale: bool = True, dropout: float = 0.0, padding_idx: int = None):
     
         super().__init__()
-        self.embedding = nn.Embedding(vocab_size, embedding_dim)
+        self.embedding = nn.Embedding(vocab_size, embedding_dim, padding_idx = padding_idx)
         self.vocab_size = vocab_size
         self.embedding_dim = embedding_dim
         self.scale = scale
