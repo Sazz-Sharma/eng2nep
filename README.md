@@ -114,7 +114,9 @@ grep -c -E '^\s*$' dataset/archive/1_Eng.txt
 
 - [x] Custom BPE tokenizer
 - [x] Token + Positional embeddings
-- [ ] Transformer encoder-decoder from scratch
+- [X] Encoder from scratch
+- [ ] Decoder from scratch
+- [ ] Seq2Seq Transformer 
 - [ ] Dataloaders (streaming, bucketing, padding masks)
 - [ ] Training loop (mixed precision, checkpoints, metrics)
 - [ ] Evaluation and BLEU/SacreBLEU
