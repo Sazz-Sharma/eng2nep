@@ -19,3 +19,5 @@ class LayerNorm(nn.Module):
         normalized_x = torch.where(variance <= 1e-12, torch.zeros_like(normalized_x), normalized_x)
         return self.weight * normalized_x + self.bias
 
+
+
