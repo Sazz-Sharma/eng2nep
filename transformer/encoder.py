@@ -26,8 +26,13 @@ class EncoderBlock(nn.Module):
         self.dropout = nn.Dropout(dropout)
     
     def forward(self, x: torch.Tensor, mask: torch.Tensor = None) -> torch.Tensor:
-        residual = x + self.dropout(self.attn(self.norm1(x), self.norm1(x), self.norm1(x)))
-        output = residual + self.dropout(self.ffn(self.norm2(residual)))
-        return output
+        nx = self.norm1(x)
+        attn_out = self.attn(nx, nx, nx, mask)
+        x = x + self.dropout(attn_out)
+        ny = self.norm2(x)
+        ffn_out = self.ffn(ny)
+        x = x + self.dropout(ffn_out)
+        return x
+
 
 
